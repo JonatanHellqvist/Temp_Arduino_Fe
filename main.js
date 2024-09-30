@@ -9,25 +9,29 @@ listUl.id = 'listUl';
 let headerDiv = document.createElement('div');
 headerDiv.id = 'headerContainer';
 
-let latestInputBtn = document.createElement('button');
-latestInputBtn.textContent = 'Latest entry';
 let statisticsBtn = document.createElement('button');
 statisticsBtn.textContent = 'Statistics';
-let refreshBtn = document.createElement('button');
-refreshBtn.textContent = 'Refresh';
+// let latestInputBtn = document.createElement('button');
+// latestInputBtn.textContent = 'Latest entry';
+// let refreshBtn = document.createElement('button');
+// refreshBtn.textContent = 'Refresh';
 let headerDivH1 = document.createElement('h1');
 headerDivH1.textContent = 'DHT11 Sensor Data';
-
+let navBar = document.createElement('div');
+navBar.id = 'navBar';
 let sensorData = [];
+let selectedSortingMode = "";
 
 main.appendChild(headerDiv);
 headerDiv.appendChild(headerDivH1);
-headerDiv.appendChild(latestInputBtn);
-headerDiv.appendChild(statisticsBtn);
+// headerDiv.appendChild(latestInputBtn);
 
-latestInputBtn.addEventListener('click', showLatestDht11Input);
+navBar.appendChild(statisticsBtn);
+headerDiv.appendChild(navBar);
+
+// latestInputBtn.addEventListener('click', showLatestDht11Input);
 statisticsBtn.addEventListener('click', handleStatisticsClick);
-refreshBtn.addEventListener('click', printDht11SensorData);
+// refreshBtn.addEventListener('click', printDht11SensorData);
 
 main.appendChild(listDiv);
 listDiv.appendChild(listUl);
@@ -144,11 +148,12 @@ function filterYesterdayDht11Data() {
     
     let selectionDiv = document.createElement('div');
     selectionDiv.id = 'selectionContainer';
-  
+    selectionDiv.textContent = "Sorting Mode: ";
     let dateSelection = document.createElement('select');
     dateSelection.id = 'dateSelection';
   
     dateSelection.innerHTML = `
+    <Select>
     <option value="Today">Today</option>
     <option value="Yesterday">Yesterday</option>
     <option value="Last 3 days">Last 3 days</option>
@@ -162,18 +167,63 @@ function filterYesterdayDht11Data() {
     let existingSelectionDiv = document.getElementById('selectionContainer');
 
     if (existingSelectionDiv) {
-      headerDiv.removeChild(existingSelectionDiv);
+      navBar.removeChild(existingSelectionDiv);
     }
     
-    headerDiv.appendChild(selectionDiv);  
+    
+    //om det behövs för css
+    // let latestEntryDiv = document.createElement('div'); 
+    // latestEntryDiv.id = 'latestEntryContainer';
+    let latestEntryBtn = document.createElement('button');
+    latestEntryBtn.id = 'latestEntry';
+    latestEntryBtn.textContent = "Show latest entry";
+    // latestEntryDiv.appendChild(latestEntryBtn);
+    latestEntryBtn.addEventListener("click", showLatestDht11Input);
+    
+    //om det behövs för css
+    // let showAllDataDiv = document.createElement('div');
+    // showAllDataDiv.id ='showAllDataContainer';
+    let showAllDataBtn = document.createElement('button');
+    showAllDataBtn.id = 'showAllData';
+    showAllDataBtn.textContent = "Show all data";
+    showAllDataBtn.addEventListener("click", () => {
+      console.log(selectedSortingMode);
+
+      printDht11SensorData(sortByDateDht11SensorData(selectedSortingMode));
+    
+
+    });
+    // showAllDataDiv.appendChild(showAllDataBtn);
+
+    
+    selectionDiv.appendChild(latestEntryBtn);
+    selectionDiv.appendChild(showAllDataBtn);
+    navBar.appendChild(selectionDiv);
+
+
 }
 
 function handleSortChange() {
   const dateSelectionValue = document.getElementById("dateSelection").value;
-  const filteredData = sortByDateDht11SensorData(dateSelectionValue);
+  const filteredData = sortByDateDht11SensorData(dateSelectionValue); //för att sortera efter valt model
+
+  
+  selectedSortingMode = dateSelectionValue; //sätter vilken sorteringsmodell som är vald
+  console.log(selectedSortingMode);
+  
+  
   
   printDht11SensorData(filteredData);
 }
+
+//////////////////////////// VALD SORTMODE STATS //////////////////////////
+////////////////////////////////TODO///////////////////////////////////////
+//Average temp
+//Average humidity
+
+//Highest temperature / lowest temperature
+// High humidity / lowest humidity
+//////////////////////////////////////////////////////////////////////////
   
 fetchDht11SensorData();
 
