@@ -161,7 +161,10 @@ function filterYesterdayDht11Data() {
     <option value="Last 30 days">Last 30 days</option>
     `;
   
-    dateSelection.addEventListener('change', handleSortChange);
+    dateSelection.addEventListener('change', () => {
+      handleSortChange();
+      printSelectedModeStats();
+    });
     selectionDiv.appendChild(dateSelection);
 
     let existingSelectionDiv = document.getElementById('selectionContainer');
@@ -218,11 +221,62 @@ function handleSortChange() {
 
 //////////////////////////// VALD SORTMODE STATS //////////////////////////
 ////////////////////////////////TODO///////////////////////////////////////
-//Average temp
-//Average humidity
 
-//Highest temperature / lowest temperature
-// High humidity / lowest humidity
+function printSelectedModeStats() {
+  let filteredData = [];
+
+  switch (selectedSortingMode) {
+    case "Today":
+      filteredData = filterTodayDht11Data();
+      break;
+    case "Yesterday":
+      filteredData = filterYesterdayDht11Data();
+      break;
+    case "Last 3 days":
+      filteredData = filterDht11DataByDays(3);
+      break;
+    case "Last 7 days":
+      filteredData = filterDht11DataByDays(7);
+      break;
+    case "Last 30 days":
+      filteredData = filterDht11DataByDays(30);
+      break;
+    default:
+      console.log("");
+      return;
+  }
+   if (filteredData.length === 0) {
+    listUl.innerHTML = "No Data Available";
+    return;
+  }
+
+  let totalTemp = 0, totalHumidity = 0;
+  let maxTemp = Math.max(...filteredData.map(data => data.celsius));
+  let minTemp = Math.min(...filteredData.map(data => data.celsius));
+  let maxHumidity = Math.max(...filteredData.map(data => data.humidity));
+  let minHumidity = Math.min(...filteredData.map(data => data.humidity));
+
+  filteredData.forEach(data => {
+    totalTemp += data.celsius;
+    totalHumidity += data.humidity;
+  });
+  let numberOfImputs = filteredData.length;
+  let avgTemp = (totalTemp / filteredData.length).toFixed(2);
+  let avgHumidity = (totalHumidity / filteredData.length).toFixed(2);
+
+  listUl.innerHTML = `
+    <li><strong>Statistics for: ${selectedSortingMode}</strong></li>
+    <li>Average Temperature: ${avgTemp}°C</li>
+    <li>Average Humidity: ${avgHumidity}%</li>
+    <li>Highest Temperature: ${maxTemp}°C</li>
+    <li>Lowest Temperature: ${minTemp}°C</li>
+    <li>Highest Humidity: ${maxHumidity}%</li>
+    <li>Lowest Humidity: ${minHumidity}%</li>
+    <li>Number of entries: ${numberOfImputs}</li>
+  `;
+  
+}
+
 //////////////////////////////////////////////////////////////////////////
   
 fetchDht11SensorData();
