@@ -37,7 +37,7 @@ listDiv.appendChild(listUl);
 function printDht11SensorData() {
   listUl.innerHTML = "";
   
-  fetch(`https://dolphin-app-e2jle.ondigitalocean.app/get-all-dht11-sensor-data`)
+  fetch(`https://orca-app-il7tk.ondigitalocean.app/get-all-dht11-sensor-data`)
    .then(response => response.json())
    .then(data => {
 
