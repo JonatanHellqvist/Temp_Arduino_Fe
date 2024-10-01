@@ -22,11 +22,21 @@ navBar.id = 'navBar';
 let sensorData = [];
 let selectedSortingMode = "";
 
+ //om det behövs för css
+    // let latestEntryDiv = document.createElement('div'); 
+    // latestEntryDiv.id = 'latestEntryContainer';
+    let latestEntryBtn = document.createElement('button');
+    latestEntryBtn.id = 'latestEntry';
+    latestEntryBtn.textContent = "Show latest entry";
+    // latestEntryDiv.appendChild(latestEntryBtn);
+    latestEntryBtn.addEventListener("click", showLatestDht11Input);
+
 main.appendChild(headerDiv);
 headerDiv.appendChild(headerDivH1);
 // headerDiv.appendChild(latestInputBtn);
 
 navBar.appendChild(statisticsBtn);
+navBar.appendChild(latestEntryBtn);
 headerDiv.appendChild(navBar);
 
 // latestInputBtn.addEventListener('click', showLatestDht11Input);
@@ -52,6 +62,13 @@ function printDht11SensorData(sensorData) {
     listUl.innerHTML = "Ingen data tillgänglig."; 
     return;
   }
+  console.log(selectedSortingMode);
+  
+  let listH1 = document.createElement("h1");
+  listH1.id = "listH1";
+  listH1.innerText = `All Sensor Data For: ${selectedSortingMode}`
+  listUl.appendChild(listH1);
+
   sensorData.forEach(singleReading => {
     let listItem = document.createElement('li');
     let timeStampString = singleReading.timeStamp.toString();
@@ -107,7 +124,9 @@ function printDht11SensorData(sensorData) {
     return sensorData.filter(reading => {
         const readingDate = new Date(reading.timeStamp);
         return readingDate >= dateThresholdStart && readingDate < dateThresholdEnd;
-    });
+    })
+    //sortera efter senaste först
+    .sort((a, b) => new Date(b.timeStamp) - new Date(a.timeStamp));
 }
 
 function filterTodayDht11Data() {
@@ -123,7 +142,10 @@ function filterTodayDht11Data() {
   return sensorData.filter(reading => {
       const readingDate = new Date(reading.timeStamp);
       return readingDate >= dateThresholdStart && readingDate < dateThresholdEnd;
-  });
+  })
+  //sortera efter senaste först
+  .sort((a, b) => new Date(b.timeStamp) - new Date(a.timeStamp)); 
+  
 }
 
 function filterYesterdayDht11Data() {
@@ -138,13 +160,17 @@ function filterYesterdayDht11Data() {
   return sensorData.filter(reading => {
       const readingDate = new Date(reading.timeStamp);
       return readingDate >= dateThresholdStart && readingDate < dateThresholdEnd;
-  });
+  })
+  //sortera efter senaste först
+  .sort((a, b) => new Date(b.timeStamp) - new Date(a.timeStamp)); 
 }
 
   function handleStatisticsClick() {
     listUl.innerHTML = ""; 
-    
-    printDht11SensorData(filterTodayDht11Data());
+
+    selectedSortingMode = "Today";
+    // printDht11SensorData(filterTodayDht11Data(selectedSortingMode)); <- Om man vill visa all data istället vid klick på statisticBTMN
+    printSelectedModeStats(printDht11SensorData(filterTodayDht11Data(selectedSortingMode)));
     
     let selectionDiv = document.createElement('div');
     selectionDiv.id = 'selectionContainer';
@@ -174,14 +200,7 @@ function filterYesterdayDht11Data() {
     }
     
     
-    //om det behövs för css
-    // let latestEntryDiv = document.createElement('div'); 
-    // latestEntryDiv.id = 'latestEntryContainer';
-    let latestEntryBtn = document.createElement('button');
-    latestEntryBtn.id = 'latestEntry';
-    latestEntryBtn.textContent = "Show latest entry";
-    // latestEntryDiv.appendChild(latestEntryBtn);
-    latestEntryBtn.addEventListener("click", showLatestDht11Input);
+   
     
     //om det behövs för css
     // let showAllDataDiv = document.createElement('div');
@@ -199,7 +218,7 @@ function filterYesterdayDht11Data() {
     // showAllDataDiv.appendChild(showAllDataBtn);
 
     
-    selectionDiv.appendChild(latestEntryBtn);
+    // selectionDiv.appendChild(latestEntryBtn);
     selectionDiv.appendChild(showAllDataBtn);
     navBar.appendChild(selectionDiv);
 
