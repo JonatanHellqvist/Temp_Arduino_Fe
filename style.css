@@ -66,7 +66,9 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid rgb(23, 221, 33);
+  
+  border: 3px solid black;
+  box-shadow: inset 0px 0px 5px 1px rgb(10, 65, 10);
 
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -75,10 +77,10 @@ button {
   background-color: #032e0c;
   /* background-color: #1a1a1a; */
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 1.0s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #ffffff;
 }
 button:focus,
 button:focus-visible {
@@ -102,31 +104,37 @@ button:focus-visible {
 #navBar {
   /* border: 1px solid white; */
   /* border: 1px solid rgb(23, 221, 33); */
-  border-radius: 8px;
+  /* border-radius: 8px; */
   padding: 5px;
-  background-color: rgba(26, 25, 25, 0.575);
+  background-color: rgba(0, 0, 0, 0.575);
 }
 #listContainer {
   
   /* background-color: black; */
-  margin: 0 auto;
+  /* margin: 0 auto; */
   /* border: 1px solid white; */
   display: grid;
   /* grid-template-columns: 1fr 1fr; */
-  grid-gap: 20px;
-  width: 90%;
-  padding: 20px;
-  padding-top: 0px;
+  /* grid-gap: 20px; */
+  /* width: 90%; */
+  /* padding: 20px;
+  padding-top: 0px; */
   box-sizing: border-box;
   justify-content: center;
+  /* margin-top: 10px; */
+  /* border-radius: 8px;
+  border: 5px solid black; */
+  background-color: rgba(0, 0, 0, 0.575);
 }
 #listUl {
-  border: 1px solid rgb(23, 221, 33);
-  border-radius: 8px;
+  border-left: 3px solid black;
+  border-right: 3px solid black;
+  /* border-radius: 8px; */
   background-color: rgba(0, 0, 0, 0.575);
   width: 100%;
   /* border: 1px solid red; */
   margin-top: 0;
+  margin-bottom: 0;
   color:  rgb(255, 255, 255);
   padding: 5px;
   padding-top: 0;
@@ -136,7 +144,7 @@ button:focus-visible {
   font-size: 20px;
 }
 #averageContainer {
-  border-bottom: 1px solid rgb(23, 221, 33);
+  border-bottom: 1px solid white;
   text-align: left;
   width: 100%; 
   padding: 10px 20px; 
@@ -151,7 +159,7 @@ li {
 }
 
 #tempContainer {
-  border-bottom: 1px solid rgb(23, 221, 33);
+  border-bottom: 1px solid white;
   text-align: left;
   width: 100%; 
   padding: 10px 20px; 
@@ -162,7 +170,7 @@ li {
   /* justify-content: center; */
 }
 #humidityContainer {
-  border-bottom: 1px solid rgb(23, 221, 33);
+  border-bottom: 1px solid white;
   text-align: left;
   width: 100%; 
   padding: 10px 20px; 
@@ -182,7 +190,7 @@ li {
   grid-template-columns: 1fr;
 }
 #statsH1Container {
-  border-bottom: 1px solid rgb(23, 221, 33);
+  border-bottom: 1px solid white;
 }
 #statsH1 {
   font-size: 20px;
@@ -213,7 +221,10 @@ li {
 }
 #sortingModeContainer {
   border-radius: 8px;
-  border: 1px solid rgb(23, 221, 33);
+  /* border: 1px solid rgb(23, 221, 33); */
+  border: 3px solid black;
+  box-shadow: inset 0px 0px 5px 1px rgb(10, 65, 10);
+
   padding: 0.4em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -256,15 +267,25 @@ li {
   margin-bottom: 0;
 }
 #headerTextContainer {
-  border-radius: 8px;
-  border: 1px solid rgb(23, 221, 33);
+  /* border-radius: 8px; */
+  border-bottom: 3px solid black;
+  border-top: 1px solid black;
   
   /* margin-bottom: 10px; */
   background-color: #032e0c;
+}
+#headerContainer {
+  /* border-radius: 8px;
+border: 5px solid black; */
+border-bottom: 3px solid black;
 }
 #app {
   /* background-color: rgb(20, 20, 20); */
   /* box-shadow: 1px 0px 100px 50px rgb(17, 16, 16); */
   /* box-shadow: inset 1px 0px 100px 50px rgb(85, 12, 12); */
   /* border-radius: 50px; */
+  border-radius: 8px;
+  border: 3px solid black;
+  box-shadow: 0px 0px 2px 1px rgb(0, 0, 0);
+  padding: 0;
 }
