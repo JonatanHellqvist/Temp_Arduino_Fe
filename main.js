@@ -30,7 +30,7 @@ buttonsDiv.id = 'buttonsContainer';
 
 navBar.id = 'navBar';
 let sensorData = [];
-let selectedSortingMode = "";
+let selectedSortingMode = "Today";
 
  //om det behövs för css
     // let latestEntryDiv = document.createElement('div'); 
@@ -70,7 +70,11 @@ function fetchDht11SensorData() {
     .then(response => response.json())
     .then(data => {
       sensorData = data;
-      printDht11SensorData(); 
+      // printDht11SensorData(); 
+    
+      printDht11SensorData(filterTodayDht11Data());
+      printSelectedModeStats();
+      
     });
 }
 
@@ -342,5 +346,8 @@ function printSelectedModeStats() {
 //////////////////////////////////////////////////////////////////////////
   
 fetchDht11SensorData();
+// printSelectedModeStats(printDht11SensorData(filterTodayDht11Data(selectedSortingMode)));
+
+
 
 
