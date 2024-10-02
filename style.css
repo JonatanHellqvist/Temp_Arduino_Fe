@@ -28,6 +28,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  /* box-shadow: inset 1px 0px 100px 50px rgb(85, 12, 12); */
 }
 
 h1 {
@@ -65,12 +66,14 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid rgb(23, 221, 33);
+
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #032e0c;
+  /* background-color: #1a1a1a; */
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -97,13 +100,171 @@ button:focus-visible {
 
 
 #navBar {
-  border: 1px solid red;
+  /* border: 1px solid white; */
+  /* border: 1px solid rgb(23, 221, 33); */
+  border-radius: 8px;
+  padding: 5px;
+  background-color: rgba(26, 25, 25, 0.575);
+}
+#listContainer {
+  
+  /* background-color: black; */
+  margin: 0 auto;
+  /* border: 1px solid white; */
+  display: grid;
+  /* grid-template-columns: 1fr 1fr; */
+  grid-gap: 20px;
+  width: 90%;
+  padding: 20px;
+  padding-top: 0px;
+  box-sizing: border-box;
+  justify-content: center;
 }
 #listUl {
-  border: 1px solid red;
+  border: 1px solid rgb(23, 221, 33);
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.575);
+  width: 100%;
+  /* border: 1px solid red; */
+  margin-top: 0;
+  color:  rgb(255, 255, 255);
   padding: 5px;
+  padding-top: 0;
   list-style: none;
 }
 #listH1 {
   font-size: 20px;
+}
+#averageContainer {
+  border-bottom: 1px solid rgb(23, 221, 33);
+  text-align: left;
+  width: 100%; 
+  padding: 10px 20px; 
+  box-sizing: border-box;
+  grid-template-columns: 200px 1fr;
+  justify-items: start;
+  text-align: center;
+  /* justify-content: center; */
+}
+li {
+  
+}
+
+#tempContainer {
+  border-bottom: 1px solid rgb(23, 221, 33);
+  text-align: left;
+  width: 100%; 
+  padding: 10px 20px; 
+  box-sizing: border-box;
+  grid-template-columns: 200px 1fr;
+  justify-items: start;
+  text-align: center;
+  /* justify-content: center; */
+}
+#humidityContainer {
+  border-bottom: 1px solid rgb(23, 221, 33);
+  text-align: left;
+  width: 100%; 
+  padding: 10px 20px; 
+  box-sizing: border-box;
+  grid-template-columns: 200px 1fr;
+  justify-items: start;
+  text-align: center;
+  /* justify-content: center; */
+}
+#entriesContainer {
+  
+  text-align: center;
+  justify-content: center;
+  width: 100%; 
+  padding: 10px 20px; 
+  box-sizing: border-box;
+  grid-template-columns: 1fr;
+}
+#statsH1Container {
+  border-bottom: 1px solid rgb(23, 221, 33);
+}
+#statsH1 {
+  font-size: 20px;
+}
+.flexContainer {
+  display:grid;
+  /* display: flex; */
+  /* justify-content: space-between;
+  justify-content: center; */
+  
+  gap: 20px;
+  padding: 10px;
+}
+#selectionContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* border: 1px solid green; */
+  
+  padding: 10px;
+  gap: 10px;
+  align-items: center;
+  /* justify-content: space-between; */
+}
+#selectionContainer label {
+  margin-right: 10px;
+  text-align: left;
+  
+}
+#sortingModeContainer {
+  border-radius: 8px;
+  border: 1px solid rgb(23, 221, 33);
+  padding: 0.4em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #032e0c;
+  
+  
+}
+#dateSelection {
+  margin: 0;
+  padding: 5px;
+}
+#showAllData {
+  /* width: 250px;
+  text-align: center;
+  padding: 10px; */
+}
+
+#buttonsContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* border-bottom: 1px solid rgba(23, 221, 33, 0.562); */
+  padding: 10px;
+  padding-bottom: 0;
+  gap: 10px;
+  align-items: center;
+}
+#headerContainerH2{
+  margin-top: 0;
+  margin-bottom: 25px;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 25px;
+}
+#headerContainerH1  {
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: 45px;
+  margin-top: 25px;
+  margin-bottom: 0;
+}
+#headerTextContainer {
+  border-radius: 8px;
+  border: 1px solid rgb(23, 221, 33);
+  
+  /* margin-bottom: 10px; */
+  background-color: #032e0c;
+}
+#app {
+  /* background-color: rgb(20, 20, 20); */
+  /* box-shadow: 1px 0px 100px 50px rgb(17, 16, 16); */
+  /* box-shadow: inset 1px 0px 100px 50px rgb(85, 12, 12); */
+  /* border-radius: 50px; */
 }

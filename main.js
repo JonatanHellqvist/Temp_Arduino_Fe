@@ -16,8 +16,18 @@ statisticsBtn.textContent = 'Statistics';
 // let refreshBtn = document.createElement('button');
 // refreshBtn.textContent = 'Refresh';
 let headerDivH1 = document.createElement('h1');
-headerDivH1.textContent = 'DHT11 Sensor Data';
+headerDivH1.id = 'headerContainerH1';
+headerDivH1.textContent = 'Temperature/humidity Tracker';
+let headerDivH2 = document.createElement('h2');
+headerDivH2.id = 'headerContainerH2';
+headerDivH2.textContent = 'Sensor: DHT11';
+let headerTextDiv = document.createElement('div');
+headerTextDiv.id = 'headerTextContainer';
+
 let navBar = document.createElement('div');
+let buttonsDiv = document.createElement('div');
+buttonsDiv.id = 'buttonsContainer';
+
 navBar.id = 'navBar';
 let sensorData = [];
 let selectedSortingMode = "";
@@ -31,12 +41,21 @@ let selectedSortingMode = "";
     // latestEntryDiv.appendChild(latestEntryBtn);
     latestEntryBtn.addEventListener("click", showLatestDht11Input);
 
-main.appendChild(headerDiv);
-headerDiv.appendChild(headerDivH1);
+    headerTextDiv.appendChild(headerDivH1);
+    headerTextDiv.appendChild(headerDivH2);
+    headerDiv.appendChild(headerTextDiv);
+    main.appendChild(headerDiv);
+    
+// headerDiv.appendChild(headerDivH1);
+// headerDiv.appendChild(headerDivH2);
 // headerDiv.appendChild(latestInputBtn);
 
-navBar.appendChild(statisticsBtn);
-navBar.appendChild(latestEntryBtn);
+// navBar.appendChild(statisticsBtn);
+// navBar.appendChild(latestEntryBtn);
+
+buttonsDiv.appendChild(statisticsBtn);
+buttonsDiv.appendChild(latestEntryBtn);
+navBar.appendChild(buttonsDiv);
 headerDiv.appendChild(navBar);
 
 // latestInputBtn.addEventListener('click', showLatestDht11Input);
@@ -174,7 +193,15 @@ function filterYesterdayDht11Data() {
     
     let selectionDiv = document.createElement('div');
     selectionDiv.id = 'selectionContainer';
-    selectionDiv.textContent = "Sorting Mode: ";
+
+    let sortingModeLabel = document.createElement('label');
+    sortingModeLabel.textContent = "Sorting Mode: ";
+    sortingModeLabel.setAttribute('for', 'dateSelection'); // Koppla label till select
+    selectionDiv.appendChild(sortingModeLabel);
+    let sortingModeDiv = document.createElement('div');
+    sortingModeDiv.id = 'sortingModeContainer';
+    
+    // selectionDiv.textContent = "Sorting Mode: ";
     let dateSelection = document.createElement('select');
     dateSelection.id = 'dateSelection';
   
@@ -191,7 +218,10 @@ function filterYesterdayDht11Data() {
       handleSortChange();
       printSelectedModeStats();
     });
-    selectionDiv.appendChild(dateSelection);
+    sortingModeDiv.appendChild(sortingModeLabel);
+    sortingModeDiv.appendChild(dateSelection);
+    selectionDiv.appendChild(sortingModeDiv);
+    // selectionDiv.appendChild(dateSelection);
 
     let existingSelectionDiv = document.getElementById('selectionContainer');
 
@@ -207,7 +237,7 @@ function filterYesterdayDht11Data() {
     // showAllDataDiv.id ='showAllDataContainer';
     let showAllDataBtn = document.createElement('button');
     showAllDataBtn.id = 'showAllData';
-    showAllDataBtn.textContent = "Show all data";
+    showAllDataBtn.textContent = `Show all data for: ${selectedSortingMode}`;
     showAllDataBtn.addEventListener("click", () => {
       console.log(selectedSortingMode);
 
@@ -233,8 +263,11 @@ function handleSortChange() {
   selectedSortingMode = dateSelectionValue; //sätter vilken sorteringsmodell som är vald
   console.log(selectedSortingMode);
   
-  
-  
+  const showAllDataBtn = document.getElementById('showAllData');
+  if (showAllDataBtn) {
+    showAllDataBtn.textContent = `Show all data for: ${selectedSortingMode}`;
+  }
+
   printDht11SensorData(filteredData);
 }
 
@@ -284,14 +317,24 @@ function printSelectedModeStats() {
   let avgHumidity = (totalHumidity / filteredData.length).toFixed(2);
 
   listUl.innerHTML = `
-    <li><strong>Statistics for: ${selectedSortingMode}</strong></li>
-    <li>Average Temperature: ${avgTemp}°C</li>
-    <li>Average Humidity: ${avgHumidity}%</li>
-    <li>Highest Temperature: ${maxTemp}°C</li>
-    <li>Lowest Temperature: ${minTemp}°C</li>
+    <div id="statsH1Container">
+    <li><h1 id=statsH1>Statistics for: ${selectedSortingMode}</h1></li>
+    </div>
+    <div id="averageContainer" class="flexContainer">
+    <li>Avg Temp: ${avgTemp}°C</li>
+    <li>Avg Humidity: ${avgHumidity}%</li>
+    </div>
+    <div id="tempContainer" class="flexContainer">
+    <li>Highest Temp: ${maxTemp}°C</li>
+    <li>Lowest Temp: ${minTemp}°C</li>
+    </div>
+    <div id="humidityContainer" class="flexContainer">
     <li>Highest Humidity: ${maxHumidity}%</li>
     <li>Lowest Humidity: ${minHumidity}%</li>
+    </div>
+    <div id="entriesContainer" class="flexContainer">
     <li>Number of entries: ${numberOfImputs}</li>
+    </div>
   `;
   
 }
