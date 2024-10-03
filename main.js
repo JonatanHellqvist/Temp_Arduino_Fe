@@ -261,7 +261,7 @@ function filterYesterdayDht11Data() {
 
 function handleSortChange() {
   const dateSelectionValue = document.getElementById("dateSelection").value;
-  const filteredData = sortByDateDht11SensorData(dateSelectionValue); //för att sortera efter valt model
+  const filteredData = sortByDateDht11SensorData(dateSelectionValue); //för att sortera efter vald model
 
   
   selectedSortingMode = dateSelectionValue; //sätter vilken sorteringsmodell som är vald
@@ -346,6 +346,7 @@ function printSelectedModeStats() {
 //////////////////////////////////////////////////////////////////////////
   
 fetchDht11SensorData();
+handleStatisticsClick();
 // printSelectedModeStats(printDht11SensorData(filterTodayDht11Data(selectedSortingMode)));
 
 
