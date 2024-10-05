@@ -6,20 +6,20 @@ Detta projekt skickar sensor data från ett Arduino R4 kort över wifi och denna
 Frontenden är byggd med Node.js och vi använder MongoDb som databas för att spara sensor data.
 Syftet med projektet är att samla in data (just nu med en intervall på 15 minuter) och sedan hantera datan och visa statistik.
 
-Backend:
-	*Java 21
-	*Spring
+* Backend: <br>
+	* Java 21 <br>
+	* Spring <br>
 
-	dependencies:
-		* spring dev tools
-		* spring web
-		* spring data mongodb
+* dependencies: <br>
+	* spring dev tools <br>
+	*  spring web <br>
+	*  spring data mongodb <br>
 
-Frontend:
-	* vite
-	* Node.js med npm
-	* javascript
+* Frontend: <br>
+	* vite <br>
+	* Node.js med npm <br>
+	* javascript <br>
 
-Arduino:
-	* model - R4
-	* sensor - Dht11 temp/humidty sensor
+* Arduino: <br>
+	* model - R4 <br>
+	* sensor - Dht11 temp/humidty sensor <br>
