@@ -1,4 +1,6 @@
-# Temp_Arduino_be
+# Temp_Arduino_Fe
+
+Frontend delen av Projektet Temperatur/luftfuktighets tracker.
 
 Projekt beskrivning:
 
